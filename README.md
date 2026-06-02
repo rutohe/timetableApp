@@ -1,16 +1,48 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# 大学生向け時間割管理アプリ
+遅刻や欠席数、家を出る時間などを管理するためのアプリを開発中です。
+休日の予定などにも活用できるように、土日も対象です。
+## 実装予定の機能
+### ヘッダー
+- 現在の時刻から最も近い講義までの時間
+- 次の講義の遅刻、欠席数
+### 時間割表
+- 始業時間や1コマの時間、休憩時間などを入力すると、自動で時間割の時間を計算
+- 週、日ごとに表示を切り替えられるようにする
+### 設定画面
+- 始業時間、1コマの時間、休憩時間、昼休みの長さ、いつ昼休みが入るかを入力
+- 欠席可能回数、出発時間を任意で入力するとそれに応じて表示を変更
+## 使用技術
+- React
+- HTML
+- CSS
+- JavaScript
+## データ構造案
+```js
+    const settings = {
+        start : '9:00', //始業時間
+        lectureTime : 90, //1コマの時間(分)
+        breakTime : 20, //休憩時間(分)
+        lunchBreak : 60, //昼休みの時間(分)
+        whenLunch : 2, //何限の後に昼休みがあるか
+        canAbsent : -1, //何回休めるか
+        departure : [/*7個*/], //出発時間
+    }
+    const lectures = [{
+            name : 'プログラミング入門', //講義名
+            absent : 0, //欠席数
+            lateness : 0, //遅刻数
+        },.../*これがあと6個くらい*/] //一つの曜日のデータ
+    const schedule = [lectures,.../*日～土までの7個分*/]
+```
+## コンポーネント分割案
+### App
+- state管理
+- データ保存
+- 時間割とヘッダー、設定画面表示
+### Header
+- ヘッダーに表示する諸々の計算とか表示形式を整える
+### Schedule
+- 時間割の表示形式を整え、時間の計算を行う
+- 週で一気見or日に絞ってじっくり見る2つの表示を切り替えられるようにする
+### Setting
+- 設定画面の表示と入力受付
