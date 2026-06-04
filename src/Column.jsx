@@ -1,5 +1,5 @@
 import { timeAdd } from "../functions/timeAdd"
-function Column({lectures,settings,lectureSlot,weekDay,isStub}) {
+function Column({lectures,settings,setSettings,lectureSlot,weekDay,isStub}) {
     const periodAry = Array.from({length:settings.periods})
     return(
         <>
@@ -21,8 +21,14 @@ function Column({lectures,settings,lectureSlot,weekDay,isStub}) {
                 {!isStub && lectures.map((item,index)=>{
                             return <div className="lecture-cell" key={index}>
                                 <div className="lecuture-name">{item.name}</div>
-                                <div className="lecuture-absent">欠席数:{item.absent}</div>
-                                <div className="lecture-lateness">遅刻数:{item.lateness}</div>
+                                <div className="lecture-btn-area">
+                                    <div className="lecture-absent">
+                                        <div>欠席数:{item.absent}</div>
+                                    </div>
+                                    <div className="lecture-lateness">
+                                        <div>遅刻数:{item.lateness}</div>
+                                    </div>
+                                </div>
                             </div>
                     })
                 }

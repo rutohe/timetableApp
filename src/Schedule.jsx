@@ -1,6 +1,8 @@
 import Column from "./Column"
-function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlot}) {
-    const weekDays = ["月", "火", "水", "木", "金", "土", "日"]
+import SettingIcon from "./SettingIcon"
+import Setting from "./Setting"
+function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlot,isSetting,setIsSetting}) {
+    const weekDays = ["月", "火", "水", "木", "金"]
     
     const changeScreen = (nextScreen) => {
     if(nextScreen === 'class') setViewMode([true,true,true])
@@ -10,6 +12,13 @@ function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlo
     return (
     <>
         <div className="schedule-wrapper">
+            <SettingIcon
+                size={50}
+                color="white"
+                className="setting-icon"
+                isSetting={isSetting}
+                setIsSetting={setIsSetting}
+            />
             <div className={`schedule week-view ${viewMode[0] ? 'active' : ''}`}>
                 <div className="schedule-content week-content">
                     <div className="lectures-wrapper">
@@ -19,6 +28,7 @@ function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlo
                             lectureSlot={lectureSlot}
                             weekDay={""}
                             isStub={true}
+                            setIsSetting={setIsSetting}
                         />
                         {schedule.map((item,index)=>{
                             return <Column

@@ -4,6 +4,7 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import Schedule from './Schedule'
+import Setting from './Setting'
 import { timeAdd } from '../functions/timeAdd'
 
 const testObj = {
@@ -13,7 +14,7 @@ const testObj = {
 }
 const generateTestData = (periods) => {
   const res = []
-  for (let d = 0; d < 7; d++) {
+  for (let d = 0; d < 5; d++) {
   const lec = []
   for (let p = 0; p < periods; p++) {
     lec.push({ ...testObj }) 
@@ -37,6 +38,7 @@ function App() {
   const [lectures,setLectures] = useState([])
   const [schedule,setSchedule] = useState(generateTestData(settings.periods))
   const [viewMode,setViewMode] = useState([true,false,false])
+  const [isSetting,setIsSetting] = useState([false])
     const calcLectureSlot = []
     for(let i = 0; i < settings.periods;i++){
       if(i === 0) calcLectureSlot.push(settings.start)
@@ -57,7 +59,13 @@ function App() {
         viewMode={viewMode}
         setViewMode={setViewMode}
         settings={settings}
+        setSettings={setSettings}
         lectureSlot={calcLectureSlot}
+        isSetting={isSetting}
+        setIsSetting={setIsSetting}
+      />
+      <Setting
+        
       />
     </>
   )

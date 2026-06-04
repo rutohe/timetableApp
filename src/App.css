@@ -3,6 +3,7 @@
   --bg-modal: #1e1e24;
   --text-main: #f3f4f6;
   --accent: #6366f1;
+  --fontsize: 12px;
 }
 body,html,#root{
   background-color: var(--bg-main);
@@ -39,7 +40,7 @@ body,html,#root{
 }
 .schedule-content {
   width: 85%;
-  height: 85%;
+  height: 90%;
   
   border: 1px solid rgba(255, 255, 255, 0.08);
   background-color: var(--bg-modal); 
@@ -95,10 +96,34 @@ body,html,#root{
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 12px;
+  padding: 3px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  font-size: 12px;
+  font-size: var(--fontsize);
 }
+.lecture-btn-area{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.lecture-absent,.lecture-lateness{
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: .5px rgba(255, 255, 255, 0.25) solid;
+  border-radius: 5px;
+  transition: all .4s ease;
+}
+.lecture-absent:hover,.lecture-lateness:hover{
+  background-color: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, 0.5);
+}
+
 .time-cell{
   width: 100%;
 }
@@ -130,6 +155,16 @@ body,html,#root{
  align-items: center;
  color: var(--text-main);
   gap: 8px;
+}
+.setting-icon{
+  position: fixed;
+  top: 5%;
+  right: 2%;
+  z-index: 10;
+  transition: transform 2s ease-in-out;
+}
+.setting-icon:hover{
+  transform: rotate(360deg);
 }
 
 .active{
