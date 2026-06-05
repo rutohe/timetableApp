@@ -33,12 +33,13 @@ function App() {
         lunchBreak : 60, //昼休みの時間(分)
         whenLunch : 2, //何限の後に昼休みがあるか
         canAbsent : -1, //何回休めるか
-        departure : [/*7個*/], //出発時間
+        departure : Array.from({length:7},()=>'9:00'), //出発時間
     })
   const [lectures,setLectures] = useState([])
   const [schedule,setSchedule] = useState(generateTestData(settings.periods))
   const [viewMode,setViewMode] = useState([true,false,false])
-  const [isSetting,setIsSetting] = useState([false])
+  const [isSetting,setIsSetting] = useState(false)
+  const [tabmenu,setTabmenu] = useState('general')
     const calcLectureSlot = []
     for(let i = 0; i < settings.periods;i++){
       if(i === 0) calcLectureSlot.push(settings.start)
@@ -65,8 +66,14 @@ function App() {
         setIsSetting={setIsSetting}
       />
       <Setting
-        
+        isSetting={isSetting}
+        setIsSetting={setIsSetting}
+        settings={settings}
+        setSettings={setSettings}
+        tabmenu={tabmenu}
+        setTabmenu={setTabmenu}
       />
+
     </>
   )
 }

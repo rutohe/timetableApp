@@ -13,7 +13,7 @@ const SettingIcon = ({ size = 24, color = 'currentColor', className = '',isSetti
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
-      onClick={(isSetting)=>{
+      onClick={()=>{
         return setIsSetting(!isSetting)
       }}
     >

@@ -4,6 +4,8 @@
   --text-main: #f3f4f6;
   --accent: #6366f1;
   --fontsize: 12px;
+  --settingdelay: .2s;
+  --settingduration: .6s;
 }
 body,html,#root{
   background-color: var(--bg-main);
@@ -14,12 +16,11 @@ body,html,#root{
 }
 * {
   box-sizing: border-box;
-  /* 📄 App.css の一番上に記述 */
-
-* {
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+  color: var(--text-main);
 }
+input{
+  color: green;
 }
 .schedule-wrapper{
   width: 100%;
@@ -41,11 +42,9 @@ body,html,#root{
 .schedule-content {
   width: 85%;
   height: 90%;
-  
   border: 1px solid rgba(255, 255, 255, 0.08);
   background-color: var(--bg-modal); 
   border-radius: 16px; 
-
   box-shadow: 10px 30px 70px rgba(99, 102, 241, 0.5);
 }
 .week-content{
@@ -61,7 +60,7 @@ body,html,#root{
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  color: var(--text-main);
+   
 }
 .lecture-wrapper{
   min-width: 0;
@@ -132,7 +131,7 @@ body,html,#root{
   font-size: 16px;
 }
 .column-header-cell{
-  flex: 1;
+  flex: .5;
   min-height: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -153,7 +152,7 @@ body,html,#root{
  flex-direction: column;
  justify-content: space-around;
  align-items: center;
- color: var(--text-main);
+  
   gap: 8px;
 }
 .setting-icon{
@@ -166,7 +165,106 @@ body,html,#root{
 .setting-icon:hover{
   transform: rotate(360deg);
 }
+.setting-area{
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  background: rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 1000px white;
+  position: fixed;
+  inset: 0;
+  border-radius:  0 0 0 999px;
+  transition: transform var(--settingduration) var(--settingdelay),border-radius var(--settingduration) var(--settingdelay);
+  transform: scale(0);
+  transform-origin: top right;
+}
+.setting-area.open{
+  transform: scale(1);
+  border-radius: 0;
+  transition: transform var(--settingduration) ,border-radius var(--settingduration);
+}
+.setting-wrapper{
+  opacity: 0;
+  width: 60%;
+  height: 80%;
+  transform: translate(0,10%);
+  background-color: rgba(20, 20, 25, 0.88); 
+  border: 1px solid rgba(0, 0, 0, 0.15);
 
+  box-shadow: 3px 3px 10px rgba(68, 68, 68, 0.3);
+  transition: opacity var(--settingdelay),transform var(--settingdelay);
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+}
+.setting-wrapper.view{
+  opacity: 1;
+  transition: opacity .3s var(--settingduration),transform .3s var(--settingduration);
+  transform: translate(0,0);
+}
+.tabmenu-btn-area{
+  width: 40%;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: center;
+}
+.tabmenu-btn{
+  width: 40%;
+  height: 50%;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: box-shadow .3s;
+}
+.tabmenu-btn.select{
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.tabmenu-btn:hover{
+  box-shadow: 0 0 3px white;
+}
+.setting-input{
+  width: 80%;
+  height: 80%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.input-cell{
+  width: 90%;
+}
+.input-departure{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.week-wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.time-wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+}
+.input-wrapper{
+  width: 40px;
+}
+.input-wrapper input{
+  width: 100%;
+}
 .active{
   transform: translate(0,0);
 }
