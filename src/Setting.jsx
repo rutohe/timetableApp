@@ -43,7 +43,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                     }}
                                 />
                             </div>
-                            
+                            <p>:</p>
                             <div className="input-wrapper">
                                 <input 
                                     type="number" 
@@ -82,7 +82,8 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 }}
                             />
                         </div>
-                        <div className="input-wrapper input-cell">
+                        <p>:</p>
+                        <div className="input-wrapper">
                             <input 
                                 type="number" 
                                 min={0}
@@ -99,76 +100,105 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                 </div>
                 <div className="input-lecturetime input-cell">
                     <p>1コマの長さ</p>
-                    <input 
-                        type="number"
-                        min={50}
-                        max={150}
-                        onChange={(e)=>{
-                            setSettings({...settings,lectureTime:Number(e.target.value)})
-                        }}
-                    />
+                    <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                        <div className="input-wrapper">
+                            <input 
+                                type="number"
+                                min={50}
+                                max={150}
+                                value={settings.lectureTime}
+                                onChange={(e)=>{
+                                    setSettings({...settings,lectureTime:Number(e.target.value)})
+                                }}
+                            />
+                        </div>
+                        <p>分</p>
+                    </div>
                 </div>
                 <div className="input-breaktime input-cell">
                     <p>休憩時間の長さ</p>
-                    <div className="input-minutewrapper">
-                        <input 
-                            type="number"
-                            min={0}
-                            max={30}
-                            value={settings.breakTime}
-                            onChange={(e)=>{
-                                return setSettings({...settings,breakTime:Number(e.target.value)})
-                            }}
-                        />分
+                    <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                        <div className="input-wrapper">
+                            <input 
+                                type="number"
+                                min={0}
+                                max={30}
+                                value={settings.breakTime}
+                                onChange={(e)=>{
+                                    return setSettings({...settings,breakTime:Number(e.target.value)})
+                                }}
+                            />
+                        </div>
+                        <p>分</p>
                     </div>
                 </div>
                 <div className="input-whenlunch input-cell">
                     
-                    <p>
-                        <input 
-                            type="number"
-                            min={1}
-                            max={settings.periods}
-                        />
-                        限の後に昼休憩
-                    </p>
+                    <p>昼休みのタイミング</p>
+                    <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                        <div className="input-wrapper">
+                            <input 
+                                type="number"
+                                min={1}
+                                max={settings.periods}
+                                value={settings.whenLunch}
+                                onChange={(e)=>{
+                                    setSettings({...settings,whenLunch:Number(e.target.value)})
+                                }}
+                            />
+                        </div>
+                        <p>限の後に昼休憩</p>
+                    </div>
                 </div>
                 <div className="input-lunchbreak input-cell">
                     <p>昼休憩の長さ</p>
-                    <div className="input-minutewrapper">
-                        <input 
-                            type="number"
-                            min={30}
-                            max={90}
-                            value={settings.lunchBreak}
-                            onChange={(e)=>{
-                                return setSettings({...settings,lunchBreak:Number(e.target.value)})
-                            }}
-                        />分
+                    <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                        <div className="input-wrapper">
+                            <input 
+                                type="number"
+                                min={30}
+                                max={90}
+                                value={settings.lunchBreak}
+                                onChange={(e)=>{
+                                    return setSettings({...settings,lunchBreak:Number(e.target.value)})
+                                }}
+                            />
+                        </div>
+                        <p>分</p>    
                     </div>
                 </div>
                 <div className="input-periods input-cell">
                     <p>講義数</p>
-                    <input 
-                        type="number"
-                        min={1}
-                        value={settings.periods}
-                        onChange={(e)=>{
-                            setSettings({...settings,periods:Number(e.target.value)})
-                        }}
-                    />限まで
+                    <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                        <div className="input-wrapper">
+                            <input 
+                                type="number"
+                                min={1}
+                                value={settings.periods}
+                                onChange={(e)=>{
+                                    setSettings({...settings,periods:Number(e.target.value)})
+                                }}
+                            />
+                        </div>
+                        <p>限まで</p>
+                    </div>
                 </div>
                 <div className="input-canabsent input-cell">
                         <p>休んでいい回数</p>
-                        <input 
-                            type="number"
-                            min={0}
-                            max={10}
-                            value={settings.canAbsent} 
-                            onChange={(e)=>{
-                                setSettings({...settings,canAbsent:Number(e.target.value)})
-                            }}   
-                        />
+                        <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                            <div className="input-wrapper">
+                                <input 
+                                    type="number"
+                                    min={0}
+                                    max={10}
+                                    value={settings.canAbsent} 
+                                    onChange={(e)=>{
+                                        setSettings({...settings,canAbsent:Number(e.target.value)})
+                                    }}   
+                                />
+                            </div>
+                            回
+                        </div>
                 </div>
             </div>}
         </div>
