@@ -241,6 +241,9 @@ input{
 .input-cell{
   width: 90%;
 }
+.input-cell p{
+  margin: 0;
+}
 .input-departure{
   display: flex;
   flex-direction: column;
