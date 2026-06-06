@@ -32,7 +32,7 @@ function App() {
         breakTime : 15, //休憩時間(分)
         lunchBreak : 60, //昼休みの時間(分)
         whenLunch : 2, //何限の後に昼休みがあるか
-        canAbsent : -1, //何回休めるか
+        canAbsent : 4, //何回休めるか
         departure : Array.from({length:7},()=>'9:00'), //出発時間
     })
   const [lectures,setLectures] = useState([])
