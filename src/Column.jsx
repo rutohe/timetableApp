@@ -1,10 +1,16 @@
 import { timeAdd } from "../functions/timeAdd"
-function Column({lectures,settings,setSettings,lectureSlot,weekDay,isStub}) {
+function Column({lectures,settings,setSettings,lectureSlot,weekDay,isStub,setSelectDate}) {
     const periodAry = Array.from({length:settings.periods})
     return(
         <>
             <div className="lecture-wrapper">
-                <div className={`column-header-cell ${isStub ? '' : 'weekday'}`}>
+                <div 
+                    className={`column-header-cell ${isStub ? '' : 'weekday'}`}
+                    onClick={()=>{
+                        if(isStub) return
+                        setSelectDate(weekDay)
+                    }}
+                >
                     {isStub ? "" : weekDay}
                 </div>
                 {isStub && periodAry.map((_,index)=>{
@@ -19,7 +25,11 @@ function Column({lectures,settings,setSettings,lectureSlot,weekDay,isStub}) {
                         })
                 }
                 {!isStub && lectures.map((item,index)=>{
-                            return <div className="lecture-cell" key={index}>
+                            return <div 
+                                className="lecture-cell"    
+                                key={index}
+                                // onClick={}
+                            >
                                 <div className="lecuture-name">{item.name}</div>
                                 <div className="lecture-btn-area">
                                     <div className="lecture-absent">

@@ -6,16 +6,15 @@ import './App.css'
 import Schedule from './Schedule'
 import Setting from './Setting'
 import { timeAdd } from '../functions/timeAdd'
-
-const testObj = {
-  name : 'プログラミング入門', //講義名
-  absent : 0, //欠席数
-  lateness : 0, //遅刻数
-}
 const generateTestData = (periods) => {
   const res = []
   for (let d = 0; d < 5; d++) {
   const lec = []
+  const testObj = {
+    name : `${d}`, //講義名
+    absent : 0, //欠席数
+    lateness : 0, //遅刻数
+  }
   for (let p = 0; p < periods; p++) {
     lec.push({ ...testObj }) 
   }
@@ -23,7 +22,7 @@ const generateTestData = (periods) => {
   }
   return res
 }
-
+const weekDays = ["月", "火", "水", "木", "金"]
 function App() {
   const [settings,setSettings] = useState({
         start : '9:15', //始業時間
@@ -33,14 +32,19 @@ function App() {
         lunchBreak : 60, //昼休みの時間(分)
         whenLunch : 2, //何限の後に昼休みがあるか
         canAbsent : 4, //何回休めるか
-        departure : Array.from({length:7},()=>'9:00'), //出発時間
+        departure : Array.from({length:5},()=>'9:00'), //出発時間
     })
   const [lectures,setLectures] = useState([])
   const [schedule,setSchedule] = useState(generateTestData(settings.periods))
-  const [viewMode,setViewMode] = useState([true,false,false])
+  const [viewMode,setViewMode] = useState({
+    show : true,
+    date:true,
+    class:''
+  })
   const [isSetting,setIsSetting] = useState(false)
   const [tabmenu,setTabmenu] = useState('general')
-    const calcLectureSlot = []
+  const [selectDate,setSelectDate] = useState('月')
+  const calcLectureSlot = []
     for(let i = 0; i < settings.periods;i++){
       if(i === 0) calcLectureSlot.push(settings.start)
       else{
@@ -50,7 +54,8 @@ function App() {
         calcLectureSlot.push(timeAdd(prevTime,addMinute))
       }
     }
-
+    console.log(schedule);
+    
 
   return (
     <>
@@ -64,6 +69,9 @@ function App() {
         lectureSlot={calcLectureSlot}
         isSetting={isSetting}
         setIsSetting={setIsSetting}
+        weekDays={weekDays}
+        selectDate={selectDate}
+        setSelectDate={setSelectDate}
       />
       <Setting
         isSetting={isSetting}
@@ -72,6 +80,7 @@ function App() {
         setSettings={setSettings}
         tabmenu={tabmenu}
         setTabmenu={setTabmenu}
+        weekDays={weekDays}
       />
 
     </>

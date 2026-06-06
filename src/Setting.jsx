@@ -1,4 +1,4 @@
-function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu}) {
+function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu,weekDays}) {
     return(
     <>
     <div className={`setting-area ${isSetting ? 'open' : ''}`}>
@@ -25,41 +25,44 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                 <p>出発時間</p>
                 <div className="week-wrapper">
                     {settings.departure.map((item,index)=>{
-                        return <div className="time-wrapper">
-                            <div className="input-wrapper">
-                                <input 
-                                    type="number" 
-                                    min={0}
-                                    max={23}
-                                    placeholder="9"
-                                    value={item.split(':')[0]}
-                                    onChange={(e)=>{
-                                        const ary = item.split(':')
-                                        setSettings({...settings,
-                                            departure:settings.departure.map((i,idx)=>{
-                                                return (index === idx) ? `${(e.target.value === '') ? '9' : e.target.value}:${ary[1]}` : i
-                                            })
-                                        })    
-                                    }}
-                                />
-                            </div>
-                            <p>:</p>
-                            <div className="input-wrapper">
-                                <input 
-                                    type="number" 
-                                    min={0}
-                                    max={59}
-                                    placeholder="00"
-                                    value={item.split(':')[1]}
-                                    onChange={(e)=>{
-                                        const ary = item.split(':')
-                                        setSettings({...settings,
-                                            departure:settings.departure.map((i,idx)=>{
-                                                return (index === idx) ? `${ary[0]}:${(e.target.value === '') ? '00' : e.target.value}` : i
-                                            })
-                                        })    
-                                    }}
-                                />
+                        return <div className="date-wrapper">
+                            <p>{weekDays[index]}</p>
+                            <div className="time-wrapper">
+                                <div className="input-wrapper">
+                                    <input 
+                                        type="number" 
+                                        min={0}
+                                        max={23}
+                                        placeholder="9"
+                                        value={item.split(':')[0]}
+                                        onChange={(e)=>{
+                                            const ary = item.split(':')
+                                            setSettings({...settings,
+                                                departure:settings.departure.map((i,idx)=>{
+                                                    return (index === idx) ? `${(e.target.value === '') ? '9' : e.target.value}:${ary[1]}` : i
+                                                })
+                                            })    
+                                        }}
+                                    />
+                                </div>
+                                <p>:</p>
+                                <div className="input-wrapper">
+                                    <input 
+                                        type="number" 
+                                        min={0}
+                                        max={59}
+                                        placeholder="00"
+                                        value={item.split(':')[1]}
+                                        onChange={(e)=>{
+                                            const ary = item.split(':')
+                                            setSettings({...settings,
+                                                departure:settings.departure.map((i,idx)=>{
+                                                    return (index === idx) ? `${ary[0]}:${(e.target.value === '') ? '00' : e.target.value}` : i
+                                                })
+                                            })    
+                                        }}
+                                    />
+                                </div>
                             </div>
                         </div>
                     })}
@@ -100,7 +103,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                 </div>
                 <div className="input-lecturetime input-cell">
                     <p>1コマの長さ</p>
-                    <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                    <div className="time-wrapper">
                         <div className="input-wrapper">
                             <input 
                                 type="number"
@@ -117,7 +120,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                 </div>
                 <div className="input-breaktime input-cell">
                     <p>休憩時間の長さ</p>
-                    <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                    <div className="time-wrapper">
                         <div className="input-wrapper">
                             <input 
                                 type="number"
@@ -135,7 +138,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                 <div className="input-whenlunch input-cell">
                     
                     <p>昼休みのタイミング</p>
-                    <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                    <div className="time-wrapper">
                         <div className="input-wrapper">
                             <input 
                                 type="number"
@@ -152,7 +155,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                 </div>
                 <div className="input-lunchbreak input-cell">
                     <p>昼休憩の長さ</p>
-                    <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                    <div className="time-wrapper">
                         <div className="input-wrapper">
                             <input 
                                 type="number"
@@ -169,7 +172,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                 </div>
                 <div className="input-periods input-cell">
                     <p>講義数</p>
-                    <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                    <div className="time-wrapper">
                         <div className="input-wrapper">
                             <input 
                                 type="number"
@@ -185,7 +188,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                 </div>
                 <div className="input-canabsent input-cell">
                         <p>休んでいい回数</p>
-                        <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                        <div className="time-wrapper">
                             <div className="input-wrapper">
                                 <input 
                                     type="number"

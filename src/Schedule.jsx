@@ -1,14 +1,8 @@
 import Column from "./Column"
 import SettingIcon from "./SettingIcon"
 import Setting from "./Setting"
-function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlot,isSetting,setIsSetting}) {
-    const weekDays = ["月", "火", "水", "木", "金"]
-    
-    const changeScreen = (nextScreen) => {
-    if(nextScreen === 'class') setViewMode([true,true,true])
-    else if(nextScreen === 'date') setViewMode([true,true,false])
-    else if(nextScreen === 'week') setViewMode([true,false,false])
-  } 
+import Date from "./Date"
+function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlot,isSetting,setIsSetting,weekDays,selectDate,setSelectDate}) {
     return (
     <>
         <div className="schedule-wrapper">
@@ -19,7 +13,7 @@ function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlo
                 isSetting={isSetting}
                 setIsSetting={setIsSetting}
             />
-            <div className={`schedule week-view ${viewMode[0] ? 'active' : ''}`}>
+            <div className={`schedule week-view ${viewMode.show ? 'active' : ''}`}>
                 <div className="schedule-content week-content">
                     <div className="lectures-wrapper">
                         <Column
@@ -43,12 +37,19 @@ function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlo
                     </div>
                 </div>
             </div>
-            <div className={`schedule date-view ${viewMode[1] ? 'active' : ''}`}>
+            <div className={`schedule date-view ${viewMode.date ? 'active' : ''}`}>
                 <div className="schedule-content date-content">
-
+                    <Date
+                        settings={settings}
+                        weekDays={weekDays}
+                        schedule={schedule}
+                        selectDate={selectDate}
+                        setSelectDate={setSelectDate}
+                        lectureSlot={lectureSlot}
+                    />
                 </div>
             </div>
-            <div className={`schedule class-view ${viewMode[2] ? 'active' : ''}`}>
+            <div className={`schedule class-view ${viewMode.class ? 'active' : ''}`}>
                 <div className="schedule-content class-content">
 
                 </div>
