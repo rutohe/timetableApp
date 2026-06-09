@@ -44,6 +44,7 @@ function App() {
   const [isSetting,setIsSetting] = useState(false)
   const [tabmenu,setTabmenu] = useState('general')
   const [selectDate,setSelectDate] = useState('月')
+  const [selectClass,setSelctClass] = useState(-1)
   const calcLectureSlot = []
     for(let i = 0; i < settings.periods;i++){
       if(i === 0) calcLectureSlot.push(settings.start)

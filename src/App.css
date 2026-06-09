@@ -117,7 +117,7 @@ input{
   border-radius: 5px;
   transition: all .4s ease;
 }
-.lecture-absent:hover,.lecture-lateness:hover{
+.lecture-absent:hover div,.lecture-lateness:hover div{
   background-color: rgba(34, 197, 94, 0.15);
   color: #4ade80;
   border-color: rgba(74, 222, 128, 0.5);
@@ -300,20 +300,36 @@ input{
   outline: none;
 }
 .week-navigation{
+  width: 30%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 5%;
 }
+.week-navigation p{
+  font-size: 1.125em;
+}
 .week-progress-btn{
-  width: 5%;
+  width: 15%;
+  height: 50%;
   background-color: transparent;
-  border: 1px solid white;
-  border-radius: 30px;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.125em;
+}
+.week-progress-btn p{
+  transition: transform .5s;
+}
+.week-progress-btn:hover .prev{
+  transform: translate(-10px,0);
+  cursor: pointer;
+}
+.week-progress-btn:hover .next{
+  transform: translate(10px,0);
+  cursor: pointer;
 }
 .date-content{
   display: flex;
@@ -334,13 +350,39 @@ input{
   display: grid;
   grid-template-columns: 160px 1fr;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.25s ease;
 }
-.time-area{
+.each-date:hover {
+  background-color: rgba(0, 255, 102, 0.08);
+  border-color: #00ff66; 
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.3), 
+  inset 0 0 10px rgba(0, 255, 102, 0.1);
+  transform: translateY(-2px); 
+  cursor: pointer;
+}
+.time-area,.lecture-area{
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-
+.prev-btn{
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  border: none;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform .3s;
+}
+.prev-btn:hover{
+  transform: translate(-10px,0);
+  cursor: pointer;
+}
 .active{
   transform: translate(0,0);
 }

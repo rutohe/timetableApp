@@ -2,6 +2,7 @@ import Column from "./Column"
 import SettingIcon from "./SettingIcon"
 import Setting from "./Setting"
 import Date from "./Date"
+import Class from "./Class"
 function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlot,isSetting,setIsSetting,weekDays,selectDate,setSelectDate}) {
     return (
     <>
@@ -31,6 +32,8 @@ function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlo
                                 lectureSlot={lectureSlot}
                                 weekDay={weekDays[index]}
                                 isStub={false}
+                                setSelectDate={setSelectDate}
+                                setViewMode={setViewMode}
                                 key={index}
                             />
                         })}
@@ -38,6 +41,14 @@ function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlo
                 </div>
             </div>
             <div className={`schedule date-view ${viewMode.date ? 'active' : ''}`}>
+                <button 
+                    className="prev-btn"
+                    onClick={()=>{
+                        setViewMode({...viewMode,date:false,class:false})
+                    }}    
+                >
+                    {'<'}
+                </button>
                 <div className="schedule-content date-content">
                     <Date
                         settings={settings}
@@ -50,8 +61,20 @@ function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlo
                 </div>
             </div>
             <div className={`schedule class-view ${viewMode.class ? 'active' : ''}`}>
+                <button 
+                    className="prev-btn"
+                    onClick={()=>{
+                        setViewMode({...viewMode,date:true,class:false})
+                    }}    
+                >
+                    {'<'}
+                </button>
                 <div className="schedule-content class-content">
-
+                    <Class
+                        schedule={schedule}
+                        setSchedule={setSchedule}
+                        
+                    />
                 </div>
             </div>
         </div>

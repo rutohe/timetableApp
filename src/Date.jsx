@@ -14,7 +14,7 @@ function Date({ settings, weekDays, schedule, selectDate, setSelectDate, lecture
                         }
                     }}
                 >
-                    {'<'}
+                    <p className="prev">{'<'}</p>
                 </button>
                 <p className="current-date-label">{selectDate}</p>
                 <button 
@@ -26,7 +26,7 @@ function Date({ settings, weekDays, schedule, selectDate, setSelectDate, lecture
                         }
                     }}
                 >
-                    {'>'}
+                    <p className="next">{'>'}</p>
                 </button>
             </div>
 

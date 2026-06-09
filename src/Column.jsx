@@ -1,5 +1,5 @@
 import { timeAdd } from "../functions/timeAdd"
-function Column({lectures,settings,setSettings,lectureSlot,weekDay,isStub,setSelectDate}) {
+function Column({lectures,settings,setSettings,lectureSlot,weekDay,isStub,setSelectDate,setViewMode}) {
     const periodAry = Array.from({length:settings.periods})
     return(
         <>
@@ -9,6 +9,7 @@ function Column({lectures,settings,setSettings,lectureSlot,weekDay,isStub,setSel
                     onClick={()=>{
                         if(isStub) return
                         setSelectDate(weekDay)
+                        setViewMode({show:true,date:true,class:false})
                     }}
                 >
                     {isStub ? "" : weekDay}
@@ -28,7 +29,7 @@ function Column({lectures,settings,setSettings,lectureSlot,weekDay,isStub,setSel
                             return <div 
                                 className="lecture-cell"    
                                 key={index}
-                                // onClick={}
+                                // onClick={setSchedule}
                             >
                                 <div className="lecuture-name">{item.name}</div>
                                 <div className="lecture-btn-area">
