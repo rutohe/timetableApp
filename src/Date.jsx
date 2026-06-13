@@ -1,6 +1,6 @@
 import { timeAdd } from "../functions/timeAdd";
 
-function Date({ settings, weekDays, schedule, selectDate, setSelectDate, lectureSlot }) {
+function Date({ settings, weekDays, schedule, selectDate, setSelectDate, lectureSlot ,setSelectClass,setViewMode}) {
     const currentIndex = weekDays.indexOf(selectDate);
     return (
         <>
@@ -36,7 +36,15 @@ function Date({ settings, weekDays, schedule, selectDate, setSelectDate, lecture
                         const startTime = lectureSlot[index] 
 
                         return (
-                            <div className="each-date" key={index}>
+                            <div 
+                                className="each-date"
+                                key={index}
+                                onClick={()=>{
+                                    setSelectClass(index)
+                                    setViewMode({show:true,date:true,class:true})
+                                }}
+                            >
+                                
                                 <div className="time-area">
                                     <div>{startTime}</div>
                                     <p>~</p>

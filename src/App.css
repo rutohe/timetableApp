@@ -324,11 +324,9 @@ input{
   transition: transform .5s;
 }
 .week-progress-btn:hover .prev{
-  transform: translate(-10px,0);
   cursor: pointer;
 }
 .week-progress-btn:hover .next{
-  transform: translate(10px,0);
   cursor: pointer;
 }
 .date-content{
@@ -380,7 +378,6 @@ input{
   transition: transform .3s;
 }
 .prev-btn:hover{
-  transform: translate(-10px,0);
   cursor: pointer;
 }
 .active{

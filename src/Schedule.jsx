@@ -3,7 +3,7 @@ import SettingIcon from "./SettingIcon"
 import Setting from "./Setting"
 import Date from "./Date"
 import Class from "./Class"
-function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlot,isSetting,setIsSetting,weekDays,selectDate,setSelectDate}) {
+function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlot,isSetting,setIsSetting,weekDays,selectDate,setSelectDate,setSelectClass,selectClass}) {
     return (
     <>
         <div className="schedule-wrapper">
@@ -34,13 +34,14 @@ function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlo
                                 isStub={false}
                                 setSelectDate={setSelectDate}
                                 setViewMode={setViewMode}
+                                setSelectClass={setSelectClass}
                                 key={index}
                             />
                         })}
                     </div>
                 </div>
             </div>
-            <div className={`schedule date-view ${viewMode.date ? 'active' : ''}`}>
+            {viewMode.date && <div className={`schedule date-view ${viewMode.date ? 'active' : ''}`}>
                 <button 
                     className="prev-btn"
                     onClick={()=>{
@@ -57,10 +58,12 @@ function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlo
                         selectDate={selectDate}
                         setSelectDate={setSelectDate}
                         lectureSlot={lectureSlot}
+                        setSelectClass={setSelectClass}
+                        setViewMode={setViewMode}
                     />
                 </div>
-            </div>
-            <div className={`schedule class-view ${viewMode.class ? 'active' : ''}`}>
+            </div>}
+            {viewMode.class && <div className={`schedule class-view ${viewMode.class ? 'active' : ''}`}>
                 <button 
                     className="prev-btn"
                     onClick={()=>{
@@ -73,10 +76,16 @@ function Schedule({schedule,setSchedule,viewMode,setViewMode,settings,lectureSlo
                     <Class
                         schedule={schedule}
                         setSchedule={setSchedule}
-                        
+                        selectDate={selectDate}
+                        setselectDate={setSelectDate}
+                        selectClass={selectClass}
+                        setSelectClass={setSelectClass}
+                        lectureSlot={lectureSlot}
+                        settings={settings}
+                        weekDays={weekDays}
                     />
                 </div>
-            </div>
+            </div>}
         </div>
     </>
   )

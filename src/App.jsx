@@ -12,8 +12,12 @@ const generateTestData = (periods) => {
   const lec = []
   const testObj = {
     name : `${d}`, //講義名
+    normal: 0, //平常点
+    test: 100, //テスト
+    other: 0, //その他
     absent : 0, //欠席数
     lateness : 0, //遅刻数
+    memo:'', //メモ
   }
   for (let p = 0; p < periods; p++) {
     lec.push({ ...testObj }) 
@@ -38,13 +42,14 @@ function App() {
   const [schedule,setSchedule] = useState(generateTestData(settings.periods))
   const [viewMode,setViewMode] = useState({
     show : true,
-    date:true,
-    class:''
+    date:false,
+    class:false
   })
   const [isSetting,setIsSetting] = useState(false)
   const [tabmenu,setTabmenu] = useState('general')
   const [selectDate,setSelectDate] = useState('月')
-  const [selectClass,setSelctClass] = useState(-1)
+  const [selectClass,setSelectClass] = useState(-1)
+  const [memo,setMemo] = useState('')
   const calcLectureSlot = []
     for(let i = 0; i < settings.periods;i++){
       if(i === 0) calcLectureSlot.push(settings.start)
@@ -55,7 +60,6 @@ function App() {
         calcLectureSlot.push(timeAdd(prevTime,addMinute))
       }
     }
-    console.log(schedule);
     
 
   return (
@@ -73,6 +77,8 @@ function App() {
         weekDays={weekDays}
         selectDate={selectDate}
         setSelectDate={setSelectDate}
+        setSelectClass={setSelectClass}
+        selectClass={selectClass}
       />
       <Setting
         isSetting={isSetting}
