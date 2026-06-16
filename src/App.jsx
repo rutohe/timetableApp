@@ -49,7 +49,8 @@ function App() {
   const [tabmenu,setTabmenu] = useState('general')
   const [selectDate,setSelectDate] = useState('月')
   const [selectClass,setSelectClass] = useState(-1)
-  const [memo,setMemo] = useState('')
+  const [editMode,setEditMode] = useState(false)
+
   const calcLectureSlot = []
     for(let i = 0; i < settings.periods;i++){
       if(i === 0) calcLectureSlot.push(settings.start)
@@ -79,6 +80,8 @@ function App() {
         setSelectDate={setSelectDate}
         setSelectClass={setSelectClass}
         selectClass={selectClass}
+        editMode={editMode}
+        setEditMode={setEditMode}
       />
       <Setting
         isSetting={isSetting}
