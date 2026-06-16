@@ -1,8 +1,14 @@
 function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu,weekDays}) {
     return(
     <>
-    <div className={`setting-area ${isSetting ? 'open' : ''}`}>
-        <div className={`setting-wrapper ${isSetting ? 'view' : ''}`}>
+    <div 
+        className={`setting-area ${isSetting ? 'open' : ''}`}
+        onClick={()=>setIsSetting(false)}
+    >
+        <div 
+            className={`setting-wrapper ${isSetting ? 'view' : ''}`}
+            onClick={(e)=>e.stopPropagation()}
+        >
             <div className='tabmenu-btn-area'>
                 <button 
                     className={`tabmenu-btn ${tabmenu === 'general' ? 'select':''}`}
