@@ -97,7 +97,7 @@ function Class({schedule,setSchedule,selectDate,setselectDate,selectClass,setSel
                                 min={0}
                                 max={100}
                                 value={schedule[currentIndex][selectClass].other}
-                                onInput={(e)=>gradeRatioChange('other',e.target.value)}
+                                disabled
                             />
                         </div>
                         <p>{schedule[currentIndex][selectClass].other}%</p>
