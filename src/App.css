@@ -55,11 +55,14 @@ input{
   position: relative;
 }
 .week-input-wrapper,.lecture-name{
-  width: 100%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-
+}
+.week-input-wrapper{
+  border: var(--text-main) 1px solid;
+  border-radius: 5px;
 }
 .week-input-wrapper input{
   width: 100%;
@@ -139,6 +142,7 @@ input{
 }
 .lecture-absent,.lecture-lateness{
   flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -461,15 +465,17 @@ input{
   justify-content: center;
   align-items: center;
   flex: 1;
+  width: 100%;
 }
 textarea{
   background-color: transparent;
   margin: auto;
-  width: 60%;
-  height: 60%;
+  width: 100%;
+  height: 80%;
   border: var(--text-main) solid 1px;
   border-radius: 10px;
   color: var(--text-main);
+  resize: none;
 }
 textarea:focus{
   outline: none;
@@ -490,6 +496,20 @@ textarea:focus{
 .class-view{
   z-index: 3;
 }
+.duration{
+  display: flex;
+  flex-direction: row;
+}
+.duration p{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.edit-icon{
+  position: absolute;
+  top: 5%;
+  right: 3%;
+}
 @media (max-width: 767px) {
   *{
     font-size: 10px;
@@ -499,5 +519,44 @@ textarea:focus{
   }
   .lecture-btn-area{
     flex-direction: column;
+  }
+  .duration{
+    display: flex;
+    flex-direction: column;
+  }
+  .schedule-content{
+    width: 95%;
+  }
+  .lectures-wrapper{
+    width: 100%;
+    margin-top: 5%;
+  }
+  .lecture-wrapper{
+    padding: 0;
+  }
+  .setting-icon{
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    right: 10px;
+  }
+  .edit-icon{
+    top: 1%;
+    right: 1%;
+  }
+  .weekday{
+    font-size: 10px;
+  }
+  .setting-wrapper{
+    width: 90%;
+  }
+  .input-wrapper{
+    width: 50px;
+  }
+  .input-cell{
+    grid-template-columns: 100px 1fr;
+  }
+  .date-wrapper{
+    grid-template-columns: 50px 1fr;
   }
 }

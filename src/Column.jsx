@@ -21,7 +21,9 @@ function Column({schedule,setSchedule,lectures,settings,setSettings,lectureSlot,
                             return <div className="time-cell" key={index}>
                                 <div className="period">{index + 1}限</div>
                                 <div className="duration">
-                                    {`${startTime}~${endTime}`}    
+                                    <p>{startTime}</p>
+                                    <p>~</p>
+                                    <p>{endTime}</p>
                                 </div>
                             </div>
                         })
@@ -58,7 +60,7 @@ function Column({schedule,setSchedule,lectures,settings,setSettings,lectureSlot,
                                             setSchedule(schedule.map((it,idx)=>{
                                                 return (idx === currentIndex) 
                                                 ? it.map((i,id)=>{
-                                                    return (id === index) ? {...i,absent:i.absent + 1} : i
+                                                    return (id === index) ? {...i,absent:Math.min(i.absent + 1,10)} : i
                                                 }) : it
                                             }))
                                         }}
@@ -72,7 +74,7 @@ function Column({schedule,setSchedule,lectures,settings,setSettings,lectureSlot,
                                             setSchedule(schedule.map((it,idx)=>{
                                                 return (idx === currentIndex) 
                                                 ? it.map((i,id)=>{
-                                                    return (id === index) ? {...i,lateness:i.lateness + 1} : i
+                                                    return (id === index) ? {...i,lateness:Math.min(i.lateness + 1,10)} : i
                                                 }) : it
                                             }))
                                         }}

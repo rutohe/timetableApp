@@ -115,7 +115,7 @@ function Class({schedule,setSchedule,selectDate,setselectDate,selectClass,setSel
                                         setSchedule(schedule.map((item,index)=>{
                                             return (index === currentIndex) 
                                             ? item.map((it,idx)=>{
-                                                return (idx === selectClass) ? {...it,absent:schedule[currentIndex][selectClass].absent - 1} : it
+                                                return (idx === selectClass) ? {...it,absent:Math.max(schedule[currentIndex][selectClass].absent - 1,0)} : it
                                             }) : item
                                         }))
                                     }}
@@ -129,7 +129,7 @@ function Class({schedule,setSchedule,selectDate,setselectDate,selectClass,setSel
                                         setSchedule(schedule.map((item,index)=>{
                                             return (index === currentIndex) 
                                             ? item.map((it,idx)=>{
-                                                return (idx === selectClass) ? {...it,absent:schedule[currentIndex][selectClass].absent + 1} : it
+                                                return (idx === selectClass) ? {...it,absent:Math.min(schedule[currentIndex][selectClass].absent + 1,10)} : it
                                             }) : item
                                         }))
                                     }}
@@ -147,7 +147,7 @@ function Class({schedule,setSchedule,selectDate,setselectDate,selectClass,setSel
                                         setSchedule(schedule.map((item,index)=>{
                                             return (index === currentIndex) 
                                             ? item.map((it,idx)=>{
-                                                return (idx === selectClass) ? {...it,absent:schedule[currentIndex][selectClass].lateness - 1} : it
+                                                return (idx === selectClass) ? {...it,lateness:Math.max(schedule[currentIndex][selectClass].lateness - 1,0)} : it
                                             }) : item
                                         }))
                                     }}
@@ -161,7 +161,7 @@ function Class({schedule,setSchedule,selectDate,setselectDate,selectClass,setSel
                                         setSchedule(schedule.map((item,index)=>{
                                             return (index === currentIndex) 
                                             ? item.map((it,idx)=>{
-                                                return (idx === selectClass) ? {...it,absent:schedule[currentIndex][selectClass].lateness + 1} : it
+                                                return (idx === selectClass) ? {...it,lateness:Math.min(schedule[currentIndex][selectClass].lateness + 1,10)} : it
                                             }) : item
                                         }))
                                     }}
