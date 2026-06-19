@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -12,7 +12,7 @@ const generateTestData = (periods) => {
   for (let d = 0; d < 5; d++) {
   const lec = []
   const testObj = {
-    name : `${d}`, //講義名
+    name : '', //講義名
     normal: 0, //平常点
     test: 100, //テスト
     other: 0, //その他
@@ -29,18 +29,27 @@ const generateTestData = (periods) => {
 }
 const weekDays = ["月", "火", "水", "木", "金"]
 function App() {
-  const [settings,setSettings] = useState({
-        start : '9:15', //始業時間
-        lectureTime : 90, //1コマの時間(分)
-        periods : 6, //何限まであるか
-        breakTime : 15, //休憩時間(分)
-        lunchBreak : 60, //昼休みの時間(分)
-        whenLunch : 2, //何限の後に昼休みがあるか
-        canAbsent : 4, //何回休めるか
-        departure : Array.from({length:5},()=>'9:00'), //出発時間
-    })
+  const savedSettings = localStorage.getItem('settings')
+  const savedSchedule = localStorage.getItem('schedule')
+  const [settings, setSettings] = useState(()=>{
+    const savedSettings = localStorage.getItem('settings')
+    return (savedSettings) ? JSON.parse(savedSettings) : {
+      start : '9:15', //始業時間
+      lectureTime : 90, //1コマの時間(分)
+      periods : 6, //何限まであるか
+      breakTime : 15, //休憩時間(分)
+      lunchBreak : 60, //昼休みの時間(分)
+      whenLunch : 2, //何限の後に昼休みがあるか
+      canAbsent : 4, //何回休めるか
+      departure : Array.from({length:5}, () => '9:00'), //出発時間
+    }
+  })
+  const [schedule, setSchedule] = useState(()=>{
+    const savedSchedule = localStorage.getItem('schedule')
+    console.log(generateTestData(settings.periods));
+    return (savedSchedule) ? JSON.parse(savedSchedule) : generateTestData(settings.periods)
+  })
   const [lectures,setLectures] = useState([])
-  const [schedule,setSchedule] = useState(generateTestData(settings.periods))
   const [viewMode,setViewMode] = useState({
     show : true,
     date:false,
@@ -67,7 +76,10 @@ function App() {
         calcLectureSlotAll.push({start:timeAdd(prevTime,addMinute),end:timeAdd(timeAdd(prevTime,addMinute),settings.lectureTime)})
       }
     }
-    
+    useEffect (()=>{
+      localStorage.setItem('settings',JSON.stringify(settings))
+      localStorage.setItem('schedule',JSON.stringify(schedule))
+    },[schedule,settings])
 
   return (
     <>

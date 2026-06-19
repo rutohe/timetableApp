@@ -57,7 +57,7 @@ input{
 }
 .week-input-wrapper,.lecture-name{
   width: 70%;
-  height: 30%;
+  height: 35%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,6 @@ input{
   background: transparent;
   border: none;
   text-align: center;
-  font-size: .9em;
   padding: 0;
   margin: 0;
   outline: none;
@@ -80,7 +79,7 @@ input{
   outline: none;
 }
 .lecture-name,.week-input-wrapper input{
-  font-size: 1.25em;
+  font-size: 1em;
 }
 .class-content{
   flex-direction: column;

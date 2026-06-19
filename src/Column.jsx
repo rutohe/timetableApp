@@ -41,6 +41,7 @@ function Column({schedule,setSchedule,lectures,settings,setSettings,lectureSlot,
                                 {!editMode && <div className="lecture-name">{item.name}</div>}
                                 {editMode && <div className="week-input-wrapper"><input 
                                     type="text"
+                                    placeholder="講義名を入力"
                                     value={item.name}
                                     onClick={(e)=>e.stopPropagation()}
                                     onChange={(e)=>{

@@ -64,9 +64,9 @@ const nearestTime = (current,startTime,endTime) => {
         }
     }
     // 休み時間と1限前
-    const hour = Math.floor(minDiff / 3600);
-    const minute = Math.floor((minDiff % 3600) / 60);
-    const sec = minDiff % 60;
+    const hour = pad(Math.floor(minDiff / 3600));
+    const minute = pad(Math.floor((minDiff % 3600) / 60));
+    const sec = pad(minDiff % 60);
     return {
         statu : 'break',
         text : `${minIndex + 1}限開始まであと${hour}:${minute}:${sec}`,

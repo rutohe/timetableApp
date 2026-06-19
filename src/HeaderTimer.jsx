@@ -34,7 +34,6 @@ function HeaderTimer({lectureSlot}) {
                 const sec = now.getSeconds()
                 const nowObj = {hour:hour,minute:minute,sec:sec}
                 const nearest = nearestTime(nowObj,startLecture,endLecture)
-                console.log(nearest.statu);
                setDisplayText(nearest.text)
             }
             rafIdRef.current = requestAnimationFrame(timer)
