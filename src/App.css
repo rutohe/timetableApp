@@ -612,4 +612,7 @@ textarea:focus{
     width: 65%;
     height: 10%;
   }
+  .submit-btn{
+    width: 30%;
+  }
 }

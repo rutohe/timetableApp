@@ -48,6 +48,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                         onChange={(e)=>{
                                             formValuesRef.current.departure[index] = `${e.target.value}:${item.split(':')[1]}`  
                                         }}
+                                        onFocus={(e) => e.target.select()}
                                     />
                                 </div>
                                 <p>:</p>
@@ -61,6 +62,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                         onChange={(e)=>{
                                             formValuesRef.current.departure[index] = `${item.split(':')[0]}:${e.target.value}`
                                         }}
+                                        onFocus={(e) => e.target.select()}
                                     />
                                 </div>
                             </div>
@@ -82,6 +84,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 onChange={(e)=>{
                                     formValuesRef.current.start = `${e.target.value}:${formValuesRef.start.split(':')[1]}`    
                                 }}
+                                onFocus={(e) => e.target.select()}
                             />
                         </div>
                         <p>:</p>
@@ -95,6 +98,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 onChange={(e)=>{
                                     formValuesRef.current.start = `${formValuesRef.start.split(':')[0]}:${e.target.value}`
                                 }}
+                                onFocus={(e) => e.target.select()}
                             />
                         </div>
                     </div>
@@ -111,6 +115,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 onChange={(e)=>{
                                     formValuesRef.current.lectureTime = Number(e.target.value)
                                 }}
+                                onFocus={(e) => e.target.select()}
                             />
                         </div>
                         <p>分</p>
@@ -128,6 +133,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 onChange={(e)=>{
                                     formValuesRef.current.breakTime = Number(e.target.value)    
                                 }}
+                                onFocus={(e) => e.target.select()}
                             />
                         </div>
                         <p>分</p>
@@ -146,6 +152,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 onChange={(e)=>{
                                     formValuesRef.current.whenLunch = Number(e.target.value)    
                                 }}
+                                onFocus={(e) => e.target.select()}
                             />
                         </div>
                         <p>限の後に昼休憩</p>
@@ -163,6 +170,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 onChange={(e)=>{
                                     formValuesRef.current.lunchBreak = Number(e.target.value)    
                                 }}
+                                onFocus={(e) => e.target.select()}
                             />
                         </div>
                         <p>分</p>    
@@ -179,6 +187,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 onChange={(e)=>{
                                     formValuesRef.current.periods = Number(e.target.value)    
                                 }}
+                                onFocus={(e) => e.target.select()}
                             />
                         </div>
                         <p>限まで</p>
@@ -196,6 +205,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                     onChange={(e)=>{
                                         formValuesRef.current.canAbsent = Number(e.target.value)    
                                     }}   
+                                    onFocus={(e) => e.target.select()}
                                 />
                             </div>
                             回
