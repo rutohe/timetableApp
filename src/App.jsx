@@ -80,6 +80,28 @@ function App() {
       localStorage.setItem('settings',JSON.stringify(settings))
       localStorage.setItem('schedule',JSON.stringify(schedule))
     },[schedule,settings])
+    useEffect(() => {
+      if(schedule[0].length === settings.periods) return
+      setSchedule((prev)=>{
+        return prev.map((item,index)=>{
+          if(item.length < settings.periods){
+            const needed = settings.periods - item.length
+            const addLecture = Array.from({length:needed},()=>({
+              name: '',
+              normal: 0,
+              test: 100,
+              other: 0,
+              absent: 0,
+              lateness: 0,
+              memo: ''
+            }))
+            return [...item,...addLecture]
+          }else{
+            return item.slice(0,settings.periods)
+          }
+        })
+      })
+  }, [settings.periods]);
 
   return (
     <>

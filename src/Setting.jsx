@@ -1,4 +1,8 @@
+import { useRef } from "react"
 function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu,weekDays}) {
+    const formValuesRef = useRef({
+        ...settings
+    })
     return(
     <>
     <div 
@@ -30,7 +34,7 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
             {(tabmenu === 'departure') && <div className="input-departure setting-input">
                 <p>出発時間</p>
                 <div className="week-wrapper">
-                    {settings.departure.map((item,index)=>{
+                    {formValuesRef.current.departure.map((item,index)=>{
                         return <div className="date-wrapper">
                             <p>{weekDays[index]}</p>
                             <div className="time-wrapper">
@@ -40,14 +44,9 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                         min={0}
                                         max={23}
                                         placeholder="9"
-                                        value={item.split(':')[0]}
+                                        defaultValue={item.split(':')[0]}
                                         onChange={(e)=>{
-                                            const ary = item.split(':')
-                                            setSettings({...settings,
-                                                departure:settings.departure.map((i,idx)=>{
-                                                    return (index === idx) ? `${(e.target.value === '') ? '9' : e.target.value}:${ary[1]}` : i
-                                                })
-                                            })    
+                                            formValuesRef.current.departure[index] = `${e.target.value}:${item.split(':')[1]}`  
                                         }}
                                     />
                                 </div>
@@ -58,14 +57,9 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                         min={0}
                                         max={59}
                                         placeholder="00"
-                                        value={item.split(':')[1]}
+                                        defaultValue={item.split(':')[1]}
                                         onChange={(e)=>{
-                                            const ary = item.split(':')
-                                            setSettings({...settings,
-                                                departure:settings.departure.map((i,idx)=>{
-                                                    return (index === idx) ? `${ary[0]}:${(e.target.value === '') ? '00' : e.target.value}` : i
-                                                })
-                                            })    
+                                            formValuesRef.current.departure[index] = `${item.split(':')[0]}:${e.target.value}`
                                         }}
                                     />
                                 </div>
@@ -84,10 +78,9 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 min={0}
                                 max={23}
                                 placeholder="9"
-                                value={settings.start.split(':')[0]}
+                                defaultValue={formValuesRef.current.start.split(':')[0]}
                                 onChange={(e)=>{
-                                    const ary = settings.start.split(':')
-                                    setSettings({...settings,start:`${(e.target.value === '') ? '9' : e.target.value}:${ary[1]}`})
+                                    formValuesRef.current.start = `${e.target.value}:${formValuesRef.start.split(':')[1]}`    
                                 }}
                             />
                         </div>
@@ -98,10 +91,9 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 min={0}
                                 max={59}
                                 placeholder="15"
-                                value={settings.start.split(':')[1]}
+                                defaultValue={formValuesRef.current.start.split(':')[1]}
                                 onChange={(e)=>{
-                                    const ary = settings.start.split(':')
-                                    setSettings({...settings,start:`${ary[0]}:${(e.target.value === '') ? '15' : e.target.value}`})
+                                    formValuesRef.current.start = `${formValuesRef.start.split(':')[0]}:${e.target.value}`
                                 }}
                             />
                         </div>
@@ -115,9 +107,9 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 type="number"
                                 min={50}
                                 max={150}
-                                value={settings.lectureTime}
+                                defaultValue={formValuesRef.current.lectureTime}
                                 onChange={(e)=>{
-                                    setSettings({...settings,lectureTime:Number(e.target.value)})
+                                    formValuesRef.current.lectureTime = Number(e.target.value)
                                 }}
                             />
                         </div>
@@ -132,9 +124,9 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 type="number"
                                 min={0}
                                 max={30}
-                                value={settings.breakTime}
+                                defaultValue={formValuesRef.current.breakTime}
                                 onChange={(e)=>{
-                                    return setSettings({...settings,breakTime:Number(e.target.value)})
+                                    formValuesRef.current.breakTime = Number(e.target.value)    
                                 }}
                             />
                         </div>
@@ -150,9 +142,9 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 type="number"
                                 min={1}
                                 max={settings.periods}
-                                value={settings.whenLunch}
+                                defaultValue={formValuesRef.current.whenLunch}
                                 onChange={(e)=>{
-                                    setSettings({...settings,whenLunch:Number(e.target.value)})
+                                    formValuesRef.current.whenLunch = Number(e.target.value)    
                                 }}
                             />
                         </div>
@@ -167,9 +159,9 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                 type="number"
                                 min={30}
                                 max={90}
-                                value={settings.lunchBreak}
+                                defaultValue={formValuesRef.current.lunchBreak}
                                 onChange={(e)=>{
-                                    return setSettings({...settings,lunchBreak:Number(e.target.value)})
+                                    formValuesRef.current.lunchBreak = Number(e.target.value)    
                                 }}
                             />
                         </div>
@@ -183,9 +175,9 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                             <input 
                                 type="number"
                                 min={1}
-                                value={settings.periods}
+                                defaultValue={formValuesRef.current.periods}
                                 onChange={(e)=>{
-                                    setSettings({...settings,periods:Number(e.target.value)})
+                                    formValuesRef.current.periods = Number(e.target.value)    
                                 }}
                             />
                         </div>
@@ -200,9 +192,9 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                                     type="number"
                                     min={0}
                                     max={10}
-                                    value={settings.canAbsent} 
+                                    defaultValue={formValuesRef.current.canAbsent} 
                                     onChange={(e)=>{
-                                        setSettings({...settings,canAbsent:Number(e.target.value)})
+                                        formValuesRef.current.canAbsent = Number(e.target.value)    
                                     }}   
                                 />
                             </div>
@@ -210,6 +202,15 @@ function Setting({isSetting,setIsSetting,settings,setSettings,tabmenu,setTabmenu
                         </div>
                 </div>
             </div>}
+            <button 
+                className="submit-btn"
+                onClick={()=>{
+                    setSettings(formValuesRef.current)
+                    setIsSetting(false)
+                }}
+            >
+                keep settings
+            </button>
         </div>
     </div>
     </>)

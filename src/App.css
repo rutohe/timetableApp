@@ -542,6 +542,14 @@ textarea:focus{
   text-align: center;
   z-index: 6;
 }
+.submit-btn{
+  background: transparent;
+  border: rgba(255, 255, 255, 0.25) 1px solid;
+  border-radius: 99px;
+  width: 20%;
+  height: 10%;
+  margin: 1% 0;
+}
 @media (max-width: 767px) {
   *{
     font-size: 8px;
@@ -558,7 +566,7 @@ textarea:focus{
   }
   .schedule-content{
     width: 95%;
-    height: 80%;
+    height: 85%;
   }
   .lectures-wrapper{
     width: 100%;
@@ -601,7 +609,7 @@ textarea:focus{
     left: 3px;
   }
   .header-timer{
-    width: 60%;
-    height: 15%;
+    width: 65%;
+    height: 10%;
   }
 }
