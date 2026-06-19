@@ -585,7 +585,7 @@ textarea:focus{
     height: 70%;
   }
   .input-wrapper{
-    width: 50px;
+    width: 45px;
   }
   .input-cell{
     grid-template-columns: 100px 1fr;
