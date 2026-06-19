@@ -6,6 +6,7 @@ import './App.css'
 import Schedule from './Schedule'
 import Setting from './Setting'
 import { timeAdd } from '../functions/timeAdd'
+import HeaderTimer from './HeaderTimer'
 const generateTestData = (periods) => {
   const res = []
   for (let d = 0; d < 5; d++) {
@@ -52,19 +53,27 @@ function App() {
   const [editMode,setEditMode] = useState(false)
 
   const calcLectureSlot = []
+  const calcLectureSlotAll = []
     for(let i = 0; i < settings.periods;i++){
-      if(i === 0) calcLectureSlot.push(settings.start)
+      if(i === 0) {
+        calcLectureSlot.push(settings.start)
+        calcLectureSlotAll.push({start:settings.start,end:timeAdd(settings.start,settings.lectureTime)})
+      }
       else{
         const prevTime = calcLectureSlot[i - 1]
         let addMinute = settings.lectureTime
         addMinute += (i === settings.whenLunch) ? settings.lunchBreak : settings.breakTime
         calcLectureSlot.push(timeAdd(prevTime,addMinute))
+        calcLectureSlotAll.push({start:timeAdd(prevTime,addMinute),end:timeAdd(timeAdd(prevTime,addMinute),settings.lectureTime)})
       }
     }
     
 
   return (
     <>
+      <HeaderTimer
+        lectureSlot={calcLectureSlotAll}
+      />
       <Schedule
         schedule={schedule}
         setSchedule={setSchedule}

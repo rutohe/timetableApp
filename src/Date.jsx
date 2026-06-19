@@ -49,9 +49,10 @@ function Date({ settings, weekDays, schedule, selectDate, setSelectDate, lecture
                                     <div>{startTime}</div>
                                     <p>~</p>
                                     <div>{timeAdd(startTime, settings.lectureTime)}</div>
-                                </div>
-                                <div className="lecture-area">
                                     <div>{item.name}</div>
+                                </div>
+                                <div className="memo-area">
+                                    <p>{`メモ：${item.memo}`}</p>
                                 </div>
                             </div>
                         );
